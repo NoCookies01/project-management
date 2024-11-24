@@ -8,10 +8,10 @@ Project Management is a test project where user have projects and tasks and can 
 ## Prerequisites
 Ensure you have the following installed on your local machine:
 
-### Git: 
-### Node.js: Download and install Node.js (version 14 or higher recommended)
-### npm: Installed with Node.js
-### A local database (PostgreSQL)
+### Git
+### Node.js version 14 or higher
+### npm
+### PostgreSQL as main database
 
 ## Installation Steps
 
