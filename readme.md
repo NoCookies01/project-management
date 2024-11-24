@@ -4,6 +4,8 @@
 
 Project Management is a test project where user have projects and tasks and can make different actions with tasks. This project is built using Express js with Postgresql database and sequelize ORM. Below are the steps to set it up and run locally.
 
+For API Documentation please visit link: https://app.getpostman.com/join-team?invite_code=67318db0914761223b9b5ec4134227a0&target_code=320cbb978dcf28c70431f1daa2a0ef4e
+
 # Getting Started
 ## Prerequisites
 Ensure you have the following installed on your local machine:
