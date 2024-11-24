@@ -18,26 +18,36 @@ Ensure you have the following installed on your local machine:
 ### Clone the Repository
 Clone this repository to your local machine:
 
+```
 git clone
+```
 
 ### Install Dependencies
 Navigate to the project directory and install the required dependencies:
 
 cd project-management
+```
 npm install
+```
 
 ### Set Up Environment Variables
 Create a .env file in the root directory by copying the env.example file:
 
+```
 cp .env.example .env
+```
 Fill the .env file with appropriate values based on your local database configuration.
 
 ### Run Migrations
 Apply the database migrations to set up the schema:
 
+```
 npm run migrate
+```
 
 ### Start the Development Server
 Start the server in development mode:
 
+```
 npm run dev
+```
