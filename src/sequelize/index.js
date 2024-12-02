@@ -10,7 +10,7 @@ const sequelize = new Sequelize(
         host: dbConfig.development.host,
         dialect: dbConfig.development.dialect,
         operatorsAliases: false,
-        logging: false,
+        logging: console.log,
         pool: {
             max: 20,
             min: 0,
