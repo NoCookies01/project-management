@@ -31,6 +31,14 @@ class ProjectRepository {
         });
     }
 
+    async getByName(name) {
+        return await Project.findOne({
+            where: {
+                name
+            }
+        });
+    }
+
     async getByUserId(id) {
         return await User.findByPk(id, {
             attributes: { exclude: ['password'] },

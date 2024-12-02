@@ -13,6 +13,9 @@ class ProjectService {
     async create(userId, projectData) {
         const transaction = await sequelize.transaction();
         try {
+            const existedProject = await this.projectRepository.getByName(projectData.name);
+            if (existedProject) throw new Error('Project with this name already exists');
+            
             const project = await this.projectRepository.create(projectData, transaction);
 
             await this.addUserToProject(project.id, userId, transaction);
