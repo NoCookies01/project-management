@@ -2,17 +2,17 @@ const config = require('../../config');
 
 module.exports = {
     development: {
-        username: config.DB_USER,
-        password: config.DB_PASSWORD,
-        database: config.DB_NAME,
-        host: config.DB_HOST,
+        username: config.db.user,
+        password: config.db.password,
+        database: config.db.name,
+        host: config.db.host,
         dialect: 'postgres'
     }, 
     production: {
-        username: config.DB_USER,
-        password: config.DB_PASSWORD,
-        database: config.DB_NAME,
-        host: config.DB_HOST,
+        username: config.db.user,
+        password: config.db.password,
+        database: config.db.name,
+        host: config.db.host,
         dialect: 'postgres'
     }
 }

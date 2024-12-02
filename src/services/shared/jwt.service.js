@@ -8,11 +8,11 @@ class JwtService {
                 id: user.id
             } 
         };
-        return jwt.sign(payload, config.JWT_SECRET, { expiresIn: config.JWT_TOKEN_EXPIRES_IN });
+        return jwt.sign(payload, config.jwtSecret, { expiresIn: config.JWT_TOKEN_EXPIRES_IN });
     }
 
     verifyToken(token) {
-        return jwt.verify(token, config.JWT_SECRET);
+        return jwt.verify(token, config.jwtSecret);
     }
 }
 

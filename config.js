@@ -1,11 +1,36 @@
+const Joi = require('joi');
 require('dotenv').config();
 
+const envSchema = Joi.object({
+    NODE_ENV: Joi.string()
+        .valid('development', 'production', 'test')
+        .default('development'),
+    PORT: Joi.number().default(3000),
+    JWT_SECRET: Joi.string()
+        .required()
+        .description('JWT Secret is required'),
+    DB_HOST: Joi.string().required().description('Database host is required'),
+    DB_PORT: Joi.number().default(5432),
+    DB_USER: Joi.string().required().description('Database user is required'),
+    DB_PASSWORD: Joi.string().required().description('Database password is required'),
+    DB_NAME: Joi.string().required().description('Database name is required'),
+}).unknown();
+
+const { error, value: envVars } = envSchema.validate(process.env);
+
+if (error) {
+  throw new Error(`Config validation error: ${error.message}`);
+}
+
 module.exports = {
-    DB_HOST: process.env.DB_HOST,
-    DB_USER: process.env.DB_USER,
-    DB_NAME: process.env.DB_NAME,
-    DB_PASSWORD: process.env.DB_PASSWORD,
-    PORT: process.env.PORT || 5000,
-    JWT_SECRET: process.env.JWT_SECRET || "secret",
-    JWT_TOKEN_EXPIRES_IN: 3600 * 1000 * 1, // 1 hours
+    nodeEnv: envVars.NODE_ENV,
+    port: envVars.PORT,
+    jwtSecret: envVars.JWT_SECRET,
+    db: {
+        host: envVars.DB_HOST,
+        port: envVars.DB_PORT,
+        user: envVars.DB_USER,
+        password: envVars.DB_PASSWORD,
+        name: envVars.DB_NAME,
+    },
 };

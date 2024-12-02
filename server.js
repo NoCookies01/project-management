@@ -29,7 +29,7 @@ const connectDb = async () => {
 (async () => {
     await connectDb();
 
-    server.listen(config.PORT, () => {
-        console.log('Server listening on port', config.PORT)
+    server.listen(config.port, () => {
+        console.log('Server listening on port', config.port)
     });
 })();
