@@ -6,6 +6,7 @@ const envSchema = Joi.object({
         .valid('development', 'production', 'test')
         .default('development'),
     PORT: Joi.number().default(3000),
+    REDIS_PORT: Joi.number().default(6379),
     JWT_SECRET: Joi.string()
         .required()
         .description('JWT Secret is required'),
@@ -25,6 +26,7 @@ if (error) {
 module.exports = {
     nodeEnv: envVars.NODE_ENV,
     port: envVars.PORT,
+    redisPort: envVars.REDIS_PORT,
     jwtSecret: envVars.JWT_SECRET,
     db: {
         host: envVars.DB_HOST,

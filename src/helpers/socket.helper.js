@@ -1,33 +1,27 @@
-const userSocketMap = {};
+const { redisClient } = require("../config/redis.config");
 
-const getReceiverSocketId = (receiverId) => {
-    return userSocketMap[receiverId] || [];
-};
+const userSocketMapKey = "userSocketMap";
 
-const addUserSocket = (userId, socketId) => {
-    if (!userSocketMap[userId]) {
-        userSocketMap[userId] = [];
-    }
-    userSocketMap[userId].push(socketId);
-};
+async function addUserSocket(userId, socketId) {
+    await redisClient.hSet(userSocketMapKey, userId, socketId);
+}
 
-const removeUserSocket = (userId, socketId) => {
-    if (userSocketMap[userId]) {
-        userSocketMap[userId] = userSocketMap[userId].filter(id => id !== socketId);
-        if (userSocketMap[userId].length === 0) {
-            delete userSocketMap[userId];
-        }
-    }
-};
+async function removeUserSocket(userId) {
+    await redisClient.hDel(userSocketMapKey, userId);
+}
 
-const getTotalOnlineUsers = () => {
-    return Object.keys(userSocketMap).length;
-};
+async function getReceiverSocketId(userId) {
+    return await redisClient.hGet(userSocketMapKey, userId);
+}
+
+async function getTotalOnlineUsers() {
+    const keys = await redisClient.hKeys(userSocketMapKey);
+    return keys.length;
+}
 
 module.exports = {
-    getReceiverSocketId,
     addUserSocket,
     removeUserSocket,
+    getReceiverSocketId,
     getTotalOnlineUsers,
-    userSocketMap
 };

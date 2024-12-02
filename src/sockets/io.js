@@ -6,7 +6,12 @@ const setIoInstance = (io) => {
 
 const getIoInstance = () => {
     if (!ioInstance) {
-        throw new Error('Socket.io instance has not been initialized.');
+        console.warn("Socket.io instance is not yet initialized. Returning a placeholder.");
+        return {
+            to: () => ({
+                emit: () => console.warn("Socket.IO emit attempted before initialization."),
+            }),
+        };
     }
     return ioInstance;
 };
